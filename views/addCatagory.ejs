@@ -1,0 +1,70 @@
+<%-include('./menu/header')%>
+
+
+
+    <center>
+        <h3>Add Catagory</h3>
+    </center>
+    <form role="form" action="/products/addCatagory" method="POST">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <label>Catagory Type</label>
+                <select name="catagory" class="form-control">
+                    <option value="">Select Catagory</option>
+                    <option value="1">Dress</option>
+                    <option value="2">Products</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6" id="quantity">
+                <label>Sub Catagory :</label>
+                <input class="form-control" type="text" name="subCatagory" min="0" placeholder="Enter Sub Catagory">
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div align="center">
+            <input type="submit" class="btn btn-info" value="submit">
+            <input type="reset" class="btn btn-info" value="clear">
+        </div>
+    </form>
+
+    <center>
+        <h1>View Catagories</h1>
+    </center>
+    <%i=1%>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Catagory</th>
+                    <th scope="col">Sub Catagory</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%catagoryData.forEach(function(element) {%>
+                    <tr>
+                        <td>
+                            <%=i++%>
+                        </td>
+                        <td>
+                            <%if(element.catagory=='1'){ %>
+                                Dress
+                                <% } %>
+                                    <% if(element.catagory=='2'){ %>
+                                        Products
+                                        <% } %>
+                        </td>
+                        <td>
+                            <%=element.subCatagory%>
+                        </td>
+                        <td>
+                            <a href="/products/addCatagory/<%= element.id%>" class="btn btn-primary btn-sm">Edit</a>
+                            <!-- <button class="btn btn-danger btn-sm" onclick="Delete('<%= element.id%>')">Delete</button> -->
+                        </td>
+                    </tr>
+                    <%})%>
+            </tbody>
+        </table>
+
+        <%-include('./menu/footer')%>

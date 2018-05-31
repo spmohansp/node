@@ -1,0 +1,66 @@
+<%-include('./menu/header')%>
+
+<center>
+    <h1>View Products</h1>
+</center>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Discription</th>
+            <th scope="col">Catagory</th>
+            <th scope="col">Sub Catagory</th>
+            <th scope="col">favorite</th>
+            <th scope="col">Product Image</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%i=1%>
+            <%product.forEach(function(element) {%>
+                <tr>
+                    <th scope="row">
+                        <%=i++%>
+                    </th>
+                    <td>
+                        <%=element.product_name%>
+                    </td>
+                    <td>
+                        <%=element.price%>
+                    </td>
+                    <td>
+                        <%=element.description%>
+                    </td>
+                    <td>
+                        <%if(element.catagory=='1'){ %>
+                            Dress
+                            <% } %>
+                                <% if(element.catagory=='2'){ %>
+                                    Products
+                                    <% } %>
+                    </td>
+                    <td>
+                        <%=element.subCatagory.subCatagory%>
+                    </td>
+                    <td>
+                        <%=element.favorite%>
+                    </td>
+                    <td>
+                        <%element.product_image.forEach(function(element1) {%>
+                            <img src="/productImages\<%=element1.filename%>" height="42" width="42">
+                            <%})%>
+                    </td>
+                    <td>
+                        <a href="/products/addProducts/<%= element.id%>" class="btn btn-primary btn-sm">Edit</a>
+                        <button class="btn btn-danger btn-sm" onclick="DeleteProducts('<%= element.id%>')">Delete</button>
+                    </td>
+                </tr>
+                <%})%>
+    </tbody>
+</table>
+
+<%-include('./menu/footer')%>
+
+

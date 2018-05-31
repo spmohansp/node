@@ -1,0 +1,86 @@
+<%-include('./menu/header')%>
+
+    <center>
+        <h3>Add Products:</h3>
+    </center>
+    <form role="form" action="/products/addProducts" method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <label>Product Name :</label>
+                <input class="form-control" type="text" name="product_name" placeholder="Enter Product Name">
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <label>Price (₹) :</label>
+                <input class="form-control" type="number" name="price" min="0" placeholder="Enter Product price">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <label>Description</label>
+                <textarea class="form-control" placeholder="Enter Product Discription" name="description"></textarea>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <label>Catagory Type</label>
+                <select name="catagory" id="catagoryChange" class="form-control">
+                    <option value="">Select Catagory</option>
+                    <option value="1">Dress</option>
+                    <option value="2">Products</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6" id="quantity">
+                <label>Sub Catagory</label>
+                <select name="subCatagory" id="subCatagorySelect" class="form-control">
+                    <option value="">Select Catagory</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <label>favorite</label>
+                <input type="checkbox" name="favorite" value="1">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <button type="button" class="btn btn-success btn-sm pull-right add_button ">Add File</button>
+                <label>Product Image</label>
+                <input class="form-control expense_discription" placeholder="Image" name="image[]" type="file">
+                <br>
+                <div class="input_fields_wrap"></div>
+            </div>
+        </div>
+        <br>
+        <div align="center">
+            <input type="submit" class="btn btn-info" value="submit">
+            <input type="reset" class="btn btn-info" value="clear">
+        </div>
+    </form>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var max_fields = 10; //maximum input boxes allowed
+            var wrapper = $(".input_fields_wrap"); //Fields wrapper
+            var x = 1; //initlal text box count
+            $(".add_button").click(function (e) { //on add input button click
+                e.preventDefault();
+                if (x < max_fields) { //max input box allowed
+                    x++; //text box increment
+                    $(wrapper).append('<div><input class="form-control" placeholder="Image"  name="image[]" type="file" required><button class="btn btn-danger btn-sm remove_field pull-right">X</button></div>'); //add input box
+                }
+            });
+            $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+                e.preventDefault(); $(this).parent('div').remove(); x--;
+            })
+        });
+    </script>
+
+    <%-include('./menu/footer')%>

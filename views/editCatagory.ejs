@@ -1,0 +1,30 @@
+<%-include('./menu/header')%>
+    <center>
+        <h3>Edit Catagory</h3>
+    </center>
+    <form role="form" action="/products/addCatagory/<%=catagoryData.id%>" method="POST">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <label>Catagory Type</label>
+                <select name="catagory" class="form-control" disabled>
+                    <option value="">Select Catagory</option>
+                    <option value="1" <%if(catagoryData.catagory=='1' ){ %>
+                        selected
+                        <% } %>>Dress</option>
+                    <option value="2" <%if(catagoryData.catagory=='2' ){ %>
+                        selected
+                        <% } %>>Products</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6" id="quantity">
+                <label>Sub Catagory :</label>
+                <input class="form-control" type="text" name="subCatagory" value="<%=catagoryData.subCatagory%>" min="0" placeholder="Enter Sub Catagory">
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div align="center">
+            <input type="submit" class="btn btn-info" value="Update Catagory">
+        </div>
+    </form>
+    <%-include('./menu/footer')%>
